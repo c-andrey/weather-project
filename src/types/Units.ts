@@ -1,6 +1,6 @@
-const Units =  {
-  'metric': 1,
-  'imperial': 2
+const Units: any = {
+  metric: '°C',
+  imperial: '°F'
 }
 
 export default Units

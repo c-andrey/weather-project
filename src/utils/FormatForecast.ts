@@ -1,20 +1,22 @@
 import ForecastInterface from "../types/ForecastInterface"
 
-const formatForecast = (forecast: any): ForecastInterface => {
+const formatForecast = (forecast: any, units: string): ForecastInterface => {
   try {
     return {
       current: {
         humidity: forecast.current.humidity,
-        temperature: forecast.current.temp
+        temperature: parseInt(forecast.current.temp)
       },
       daily : forecast.daily.map((day: any) => ({
         max: parseInt(day.temp.max),
         min: parseInt(day.temp.min),
         humidity: day.humidity,
         weather: day.weather[0].main ? day.weather[0].main : null,
-        description: day.weather[0].description ? day.weather[0].description : null
+        description: day.weather[0].description ? day.weather[0].description : null,
+        icon: day.weather[0].icon ? day.weather[0].icon : null
       })),
-      alerts: forecast.current?.alerts
+      alerts: forecast.current?.alerts,
+      units
     }
   } catch (error) {
     throw error

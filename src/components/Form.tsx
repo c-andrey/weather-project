@@ -7,9 +7,11 @@ import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
 import CustomSelect from './custom/CustomSelect';
 import getForecast from '../services/getForecast';
 import OptionsInterface from '../types/OptionsInterface';
-import { useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import getCities from '../services/getCities';
 import ForecastCardInterface from '../types/ForecastCardInterface';
+import React from 'react';
+import Units from '../types/Units';
 
 
 export interface IFormProps {
@@ -17,18 +19,52 @@ export interface IFormProps {
 }
 
 const Form = ( {callback }: IFormProps ) => {
-  const handleForm = async ( city: OptionsInterface ): Promise<void> => {
-    try {
-      const forecast = await getForecast(city.lat, city.lon, 'metric')
+  const [units, setUnits] = useState('metric')
+  const [city, setCity] = useState<OptionsInterface>()
+  const [message, setMessage] = useState<string>('')
 
-      callback({ ...city, ...forecast})
-    } catch (error) {
-      throw error
+  const handleUnitsChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setUnits(event.target.value)
+    handleForm()
+  }
+
+  useEffect(() => {
+    const handleForm = async (): Promise<void> => {
+      try {
+        if (!city) {
+          throw new Error('Deve preencher uma cidade para pesquisar')
+        }
+        
+        const forecast = await getForecast(city.lat, city.lon, units)
+  
+        callback({ ...city, ...forecast})
+      } catch (error: any) {
+        setMessage(error.stack)
+      }
+    }
+    handleForm()
+  }, [callback, city, units])
+
+  const handleForm = async (): Promise<void> => {
+    try {
+      if (!city) {
+        throw new Error('Deve preencher uma cidade para pesquisar')
+      }
+      
+      const forecast = await getForecast(city.lat, city.lon, units)
+
+      callback({ ...city, ...forecast, units})
+    } catch (error: any) {
+      setMessage(error.stack)
     }
   }
   return (
     <div className='form'>
-      <CustomSelect<OptionsInterface> callback={handleForm} getOptions={getCities}></CustomSelect>
+      <CustomSelect<OptionsInterface> callback={setCity} getOptions={getCities}></CustomSelect>
+      <div className="units" onChange={handleUnitsChange}>
+          <input type="radio" defaultChecked value="metric" name="unit" /> °C
+          <input type="radio" value="imperial" name="unit" /> °F
+      </div>
     </div>
   );
 }

@@ -8,10 +8,8 @@ const StyledAsyncSelect = styled(AsyncSelect)`
   display: block;
   height: 34px;
   font-size: 14px;
-  color: #ccc;
+  color: #000;
   background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 4px;
   width: 50%;
 `
 

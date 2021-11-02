@@ -1,3 +1,5 @@
+import Units from "./Units";
+
 export interface AlertsInterface {
   event: string
 }
@@ -6,7 +8,8 @@ export interface DailyInterface {
   min: number,
   humidity: number,
   weather: string | null,
-  description: string | null
+  description: string | null,
+  icon: string | null
 }
 
 export default interface ForecastInterface {
@@ -15,5 +18,6 @@ export default interface ForecastInterface {
     temperature: number
   },
   daily: DailyInterface[],
-  alerts?: AlertsInterface[]
+  alerts?: AlertsInterface[],
+  units: typeof Units
 }

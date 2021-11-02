@@ -1,5 +1,6 @@
 
 import axios from 'axios';
+import Units from '../types/Units';
 import formatForecast from '../utils/FormatForecast';
 
 const getForecast = async (lat: number, lon: number, metric: string): Promise<any> => {
@@ -7,7 +8,7 @@ const getForecast = async (lat: number, lon: number, metric: string): Promise<an
 
   const { data } = response
 
-  return formatForecast(data)
+  return formatForecast(data, Units[metric])
 }
 
 export default getForecast

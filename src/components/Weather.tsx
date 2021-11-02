@@ -10,10 +10,6 @@ export interface IWeatherProps {
 const Weather = (props: IWeatherProps) => {
   const [forecast, setForecast] = useState<ForecastCardInterface>()
 
-  useEffect(() => {
-    
-  });
-
   return (
     <div className="main">
       <Form callback={setForecast}/>
