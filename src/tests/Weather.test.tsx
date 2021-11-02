@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import Weather from '../pages/Weather';
+import Weather from '../components/Weather';
 
 
 test('renders Weather page with asd write', () => {

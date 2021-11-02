@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import Weather from './pages/Weather'
+import Weather from './components/Weather'
 
 ReactDOM.render(
   <React.StrictMode>
