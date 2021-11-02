@@ -1,6 +1,5 @@
 import { Formik } from 'formik';
 import * as Yup from "yup";
-import FormInterface from '../types/FormInterface';
 import styled from 'styled-components';
 import '../styles/Form.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,25 +8,27 @@ import CustomSelect from './custom/CustomSelect';
 import getForecast from '../services/getForecast';
 import OptionsInterface from '../types/OptionsInterface';
 import { useState } from 'react';
+import getCities from '../services/getCities';
+import ForecastCardInterface from '../types/ForecastCardInterface';
 
 
 export interface IFormProps {
-
+  callback: (s: ForecastCardInterface) => void
 }
 
-const Form = ( props: IFormProps ) => {
-  const [forecast, setforecast] = useState('')
-  const handleForm = ( city: OptionsInterface ): void => {
+const Form = ( {callback }: IFormProps ) => {
+  const handleForm = async ( city: OptionsInterface ): Promise<void> => {
     try {
-      console.log(getForecast(city.label, 'metric'))
-      
+      const forecast = await getForecast(city.lat, city.lon, 'metric')
+
+      callback({ ...city, ...forecast})
     } catch (error) {
       throw error
     }
   }
   return (
     <div className='form'>
-      <CustomSelect callback={handleForm}></CustomSelect>
+      <CustomSelect<OptionsInterface> callback={handleForm} getOptions={getCities}></CustomSelect>
     </div>
   );
 }
