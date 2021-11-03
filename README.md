@@ -1,7 +1,14 @@
-features:
+Website para previsões meterológicas utilizando OpenWeatherApi e React.js
 
-previsão meteorologica para 5 dias da cidade inserida
-mostrar temperatura atual
-poder alterar metricas de temperatura
-grafico de temperatura por dia
-mapa de temperatura centro na cidade escolhida
+.env deve conter uma chave chamada REACT_APP_OPENWEATHER_KEY com a key da OpenWeatherApi
+
+para iniciar o projeto basta começar com
+NPM INSTALL
+
+-> desenvolvimento 
+npm run start
+
+-> build
+npm run build
+serve -s build
+
