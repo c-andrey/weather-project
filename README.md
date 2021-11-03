@@ -5,10 +5,10 @@ Website para previsões meterológicas utilizando OpenWeatherApi e React.js
 para iniciar o projeto basta começar com
 NPM INSTALL
 
--> desenvolvimento 
+desenvolvimento 
 npm run start
 
--> build
+build
 npm run build
 serve -s build
 
