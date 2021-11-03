@@ -1,11 +1,6 @@
-import * as React from 'react';
-import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import getIcon from '../services/getIcon';
 import Conditions from '../types/Conditions';
 import { DailyInterface } from '../types/ForecastInterface';
-import Units from '../types/Units';
-import dateBuilder from '../utils/DateBuilder';
 import WeatherIcon from './WeatherIcon';
 
 export interface IForecastCardProps {
@@ -29,6 +24,12 @@ border-radius: 7px;
 padding: 10px 5px;
 
 color: #fff;
+
+@media(max-width: 600px) {
+  width: 140px;
+  height: 150px;
+  font-size: 10px;
+}
 
 .forecast__card-info {
   display: flex;

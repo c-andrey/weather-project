@@ -1,19 +1,10 @@
-import { Formik } from 'formik';
-import * as Yup from "yup";
-import styled from 'styled-components';
 import '../styles/Form.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
 import CustomSelect from './custom/CustomSelect';
 import getForecast from '../services/getForecast';
 import OptionsInterface from '../types/OptionsInterface';
 import { ChangeEvent, useEffect, useState } from 'react';
 import getCities from '../services/getCities';
 import ForecastCardInterface from '../types/ForecastCardInterface';
-import React from 'react';
-import Units from '../types/Units';
-
-
 export interface IFormProps {
   callback: (s: ForecastCardInterface) => void
 }

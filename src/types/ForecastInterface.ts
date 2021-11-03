@@ -15,7 +15,9 @@ export interface DailyInterface {
 export default interface ForecastInterface {
   current: {
     humidity: number,
-    temperature: number
+    temperature: number,
+    weather: string | null,
+    icon: string | null
   },
   daily: DailyInterface[],
   alerts?: AlertsInterface[],

@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import AsyncSelect from 'react-select/async'
 import styled from 'styled-components';
-import OptionsInterface from '../../types/OptionsInterface';
-import getCities from '../../services/getCities';
 
 const StyledAsyncSelect = styled(AsyncSelect)`
   display: block;
@@ -11,6 +9,11 @@ const StyledAsyncSelect = styled(AsyncSelect)`
   color: #000;
   background-color: #fff;
   width: 50%;
+
+  @media(max-width: 600px) {
+    height: 25px;
+    font-size: 10px;
+  }
 `
 
 export interface ICustomSelectProps<T> {

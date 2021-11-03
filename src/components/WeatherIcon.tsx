@@ -7,6 +7,12 @@ export interface IWeatherIconProps {
 const ImgStyled = styled.img`
   width: 140px;
   height: 140px;
+
+  @media(max-width: 600px) {
+    width: 70px;
+    height: 70px;
+    font-size: 12px;
+  }
 `
 
 const WeatherIcon = (props: IWeatherIconProps) => {

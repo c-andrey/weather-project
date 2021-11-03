@@ -1,6 +1,6 @@
 import Form from './Form';
 import '../styles/Weather.css'
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ForecastCardInterface from '../types/ForecastCardInterface';
 import Forecast from './Forecast';
 export interface IWeatherProps {
