@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
 import ForecastCard from './ForecastCard';
 import Units from '../types/Units';
+import dateBuilder from '../utils/DateBuilder';
+import { date } from 'yup/lib/locale';
 
 const ForecastStyled = styled.div`
   display:flex;
@@ -45,6 +47,7 @@ export default function Forecast ({forecast }: IForecastProps) {
   return (
     <ForecastStyled>
       <LocalStyled>
+        <div className="date">{dateBuilder(new Date())}</div>
         <div className='label'>{forecast.label}, {forecast.country}</div>
         <div className="current-temperature">{forecast.current.temperature} {forecast.units}</div>
         <div className="current-humidity">Umidade: {forecast.current.humidity}%</div>
@@ -53,7 +56,7 @@ export default function Forecast ({forecast }: IForecastProps) {
       <ForecastCardsStyled>
         <div className='box'>
         {forecast.daily.map((day, index) => 
-        <ForecastCard key={index} day={ day } unit={forecast.units} />
+        <ForecastCard key={index} day={ day } unit={forecast.units} date={dateBuilder(new Date(), index)} />
         )}
         </div>
       </ForecastCardsStyled>
