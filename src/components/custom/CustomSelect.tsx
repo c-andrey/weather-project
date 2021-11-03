@@ -18,7 +18,8 @@ const StyledAsyncSelect = styled(AsyncSelect)`
 
 export interface ICustomSelectProps<T> {
   callback: (city: T) => void,
-  getOptions: (inputValue: string) => Promise<T[]>
+  getOptions: (inputValue: string) => Promise<T[]>,
+  error:string
 }
 
 
@@ -49,6 +50,7 @@ const loadOptions = (inputValue: string) =>
       cacheOptions={true}
       onInputChange={(value) => setQuery(value)}
       onChange={(value) => callback(value as T)}/>
+      
   );
 }
 
